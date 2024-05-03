@@ -1,5 +1,5 @@
 {
-  "name": "n8s_neo4j",
+  "name": "n8n_neo4j",
   "version": "0.1.0",
   "description": "Simple n8n.io node to support neo4j access.",
   "main": "Neo4j.node.ts",
@@ -9,7 +9,18 @@
   },
   "scripts": {
     "//": "Change file \\node_modules\\n8n-node-dev\\dist\\src\\Build.js: const tscPath = path_1.join(__dirname, '../../../../node_modules/typescript/bin/tsc');",
-    "build": "n8n-node-dev build"
+    "build": "n8n-node-dev build",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/HttpBinApi.credentials.js"
+    ],
+    "nodes": [
+      "Neo4j.node.js"
+    ]
   },
   "author": "Ivan Lukic",
   "license": "ISC",
