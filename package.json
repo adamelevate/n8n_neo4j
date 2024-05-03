@@ -1,30 +1,54 @@
 {
-  "name": "n8n_neo4j",
-  "version": "0.1.0",
-  "description": "Simple n8n.io node to support neo4j access.",
-  "main": "Neo4j.node.ts",
-  "devDependencies": {
-    "n8n-node-dev": "^0.15.0",
-    "typescript": "~3.9.7"
-  },
-  "scripts": {
-    "//": "Change file \\node_modules\\n8n-node-dev\\dist\\src\\Build.js: const tscPath = path_1.join(__dirname, '../../../../node_modules/typescript/bin/tsc');",
-    "build": "n8n-node-dev build",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix"
-  },
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/HttpBinApi.credentials.js"
+    "name": "n8n-nodes-neo4j",
+    "version": "0.1.0",
+    "description": "Simple n8n.io node to support neo4j access.",
+    "keywords": [
+        "n8n-community-node-package"
     ],
-    "nodes": [
-      "Neo4j.node.js"
-    ]
-  },
-  "author": "Ivan Lukic",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+    "license": "MIT",
+    "homepage": "",
+    "author": {
+        "name": "Adam on behalf of Ivan Lukic",
+        "email": "a@a.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ruapho/n8n_neo4j"
+    },
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && gulp build:icons",
+        "dev": "tsc --watch",
+        "format": "prettier nodes credentials --write",
+        "lint": "eslint nodes credentials package.json",
+        "lintfix": "eslint nodes credentials package.json --fix",
+        "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "credentials": [
+            "dist/credentials/Neo4j.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/Neo4j/Neo4j.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.6",
+        "@types/request-promise-native": "~1.0.15",
+        "@typescript-eslint/parser": "~5.45",
+        "eslint-plugin-n8n-nodes-base": "^1.11.0",
+        "gulp": "^4.0.2",
+        "n8n-core": "^1.18.2",
+        "n8n-workflow": "*",
+        "prettier": "^2.7.1",
+        "typescript": "~4.8.4"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "neo4j-driver": "^5.15.0"
+    }
 }
